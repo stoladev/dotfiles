@@ -16,7 +16,6 @@ PKGS=(
     'git'                           # Git access
     'neovim'                        # Best and most malleable text editor by far
     'xcape'                         # Allows for multi-function combos, i.e. spacebar modifier
-    'xorg-xmodmap'                  # Keyboard remaps i.e. caps to escape
     'python'                        # Python development
     'python3-pip'                    # Pip install
     'nodejs'                        # js utility
