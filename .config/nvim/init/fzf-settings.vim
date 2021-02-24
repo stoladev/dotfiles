@@ -1,3 +1,5 @@
+" Should work cross platform uniformly.
+
 " Autoset FZF filetype for navigation
 augroup SetFZF
     autocmd! FileType fzf

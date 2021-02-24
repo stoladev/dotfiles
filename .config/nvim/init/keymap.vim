@@ -1,11 +1,17 @@
+" Adjust to personal settings. These make the most sense to me.
+" Leader is spacebar. For assistance, press spacebar once and wait for menu.
+" Learn combos along the way. Usually they make mnemonic sense.
 
-" LEADER/LOCALLEADER SETTINGS
+" {{{ LEADER/LOCALLEADER SETTINGS
+
 let mapleader=' '
 let maplocalleader = ';'
 call which_key#register('<Space>', 'g:which_key_map')
 
+" }}}
 
-" KEYMAP SETTINGS
+" {{{ KEYMAP SETTINGS
+
 let g:which_key_map =  {}
 
 
@@ -21,8 +27,10 @@ nnoremap k kzz
 nnoremap @ ^
 let g:vimwiki_map_prefix = '<Leader>v'
 
+" }}}
 
-" F KEY SETTINGS
+" {{{ F KEY SETTINGS
+
 " SEARCHES ALL FILES AND FOLDERS, INCLUDING HIDDEN
 command! -nargs=? -complete=dir AFF
             \ call fzf#run(fzf#wrap(fzf#vim#with_preview({
@@ -78,8 +86,10 @@ let g:which_key_map.f = {
         \ },
       \ }
 
+" }}}
 
-" B KEY SETTINGS
+" {{{ B KEY SETTINGS
+
 let g:which_key_map.b = {
       \ 'name' : '+buffer' ,
       \ 'k' : ['bd'        , 'kill buffer']   ,
@@ -91,15 +101,19 @@ let g:which_key_map.b = {
       \ 's' : ['Buffer' , 'search buffers'] ,
       \ }
 
+" }}}
 
-" M KEY SETTINGS
+" {{{ M KEY SETTINGS
+
 let g:which_key_map.m = {
       \ 'name' : '+mark' ,
       \ 's' : ['Marks'        , 'search marks']   ,
       \ }
 
+" }}}
 
-" W KEY SETTINGS
+" {{{ W KEY SETTINGS
+
 nnoremap <leader>wK :resize -5<CR>
 nnoremap <leader>wJ :resize +5<CR>
 let g:which_key_map.w = {
@@ -121,8 +135,10 @@ let g:which_key_map.w = {
       \ 's' : ['Windows'    , 'search windows']            ,
       \ }
 
+" }}}
 
-" G KEY SETTINGS
+" {{{ G KEY SETTINGS
+
 nnoremap <leader>gp :Git push<CR>
 let g:which_key_map.g = {
       \ 'name' : '+git' ,
@@ -135,8 +151,10 @@ let g:which_key_map.g = {
       \ }
       \ }
 
+" }}}
 
-" R KEY SETTINGS
+" {{{ R KEY SETTINGS
+
 command! -bang -nargs=* RGCD
         \ call fzf#vim#grep('rg --hidden --column --no-heading --line-number --color=always '.shellescape(<q-args>),               
         \ 1,                                                                                                              
@@ -198,8 +216,10 @@ let g:which_key_map.r = {
         \ },
       \ }
 
+" }}}
 
-" C KEY SETTINGS
+" {{{ C KEY SETTINGS
+
 nmap <silent> <leader>cd <Plug>(pydocstring)
 nmap <leader>cr <Plug>(coc-rename)
 let g:which_key_map.c = {
@@ -208,8 +228,10 @@ let g:which_key_map.c = {
       \ 'd' : 'create docstring',
       \ }
 
+" }}}
 
-" H KEY SETTINGS
+" {{{ H KEY SETTINGS
+
 nnoremap <leader>hg :helpgrep 
 nnoremap <leader>hp :PlugHelp<CR> 
 let g:which_key_map.h = {
@@ -218,8 +240,9 @@ let g:which_key_map.h = {
       \ 'p' : 'help with plugins'   ,
       \ }
 
+" }}}
 
-" V KEY SETTINGS
+" {{{ V KEY SETTINGS
 
 " Vimwiki Index Maps
 nmap <Leader>vwi <Plug>VimwikiIndex
@@ -257,4 +280,6 @@ let g:which_key_map.v = {
         \ },
       \ 's' : 'source init.vim',
       \ }
+
+" }}}
 

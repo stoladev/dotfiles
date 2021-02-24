@@ -15,6 +15,9 @@ endif
 call plug#begin()
 
 
+" To figure out what these plugins do, just google them. Most have their speciality in their name.
+" Or, just look at the manpages/github. 
+
 " FILESYSTEM TOOLS
 Plug 'junegunn/fzf', { 'do': './install --all' }
 Plug 'junegunn/fzf.vim'
@@ -59,7 +62,7 @@ call plug#end()
 
 
 " AUTOMATIC COC PLUGIN DL/INSTALL
-let g:coc_global_extensions=['coc-marketplace', 'coc-python', 'coc-json']
+let g:coc_global_extensions=['coc-marketplace', 'coc-python', 'coc-json', 'coc-jedi', 'coc-sh', 'coc-docker']
 
 
 " PLUGIN SETTINGS
@@ -131,15 +134,3 @@ let g:vimwiki_list = [{
             \ 'template_ext': '.html'
             \ }]
 
-
-" NEOMAKE SETTINGS
-" let g:neomake_open_list = 2
-" When writing a buffer (no delay).
-" call neomake#configure#automake('w')
-" When writing a buffer (no delay), and on normal mode changes (after 750ms).
-" call neomake#configure#automake('nw', 750)
-" When reading a buffer (after 1s), and when writing (no delay).
-" call neomake#configure#automake('rw', 1000)
-" Full config: when writing or reading a buffer, and on changes in insert and
-" normal mode (after 500ms; no delay when writing).
-" call neomake#configure#automake('nrwi', 500)

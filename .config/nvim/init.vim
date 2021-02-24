@@ -5,8 +5,6 @@
 " ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 " {{{ GENERAL SETTINGS (FIRST)
-let g:python3_host_prog = '/home/stoladev/git/python-projects/a-py-a-day/apyaday/bin/python3'
-
 
 set shiftround
 set noswapfile

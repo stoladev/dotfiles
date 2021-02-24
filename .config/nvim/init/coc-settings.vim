@@ -1,15 +1,16 @@
 " COC INSTALLS
 " CocInstall coc-marketplace
-" jedi
-" python
+" CocList marketplace
+" Common dev installs: jedi, sh, docker
 
 " COC SETTINGS
+
+" Backspace check/remap
 inoremap <silent><expr> <TAB>
       \ pumvisible() ? "\<C-n>" :
       \ <SID>check_back_space() ? "\<TAB>" :
       \ coc#refresh()
 inoremap <expr><S-TAB> pumvisible() ? "\<C-p>" : "\<C-h>"
-
 
 function! s:check_back_space() abort
   let col = col('.') - 1
