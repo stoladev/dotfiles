@@ -2,11 +2,12 @@
 
 # Default installation script for Ubuntu dev environments through CLI
 
+    # 'antigen'                       # Plugin manager for ZSH
+
 PKGS=(
 
     # Default Programs
     'zsh'                           # CLI manager
-    'antigen'                       # Plugin manager for ZSH
     'tmux'                          # Terminal wrapper to make CLI a breeze
     'ranger'                        # CLI directory/file browser
     'xclip'                         # Clipboard manager
@@ -17,13 +18,13 @@ PKGS=(
     'xcape'                         # Allows for multi-function combos, i.e. spacebar modifier
     'xorg-xmodmap'                  # Keyboard remaps i.e. caps to escape
     'python'                        # Python development
-    'python-pip'                    # Pip install
+    'python3-pip'                    # Pip install
     'nodejs'                        # js utility
     'npm'                           # Package manager for js
 
     # Fuzzy File Searching
     'fzf'                           # Fuzzy file finder
-    'fdfind'                        # FZF alternative with other functions
+    'fd-find'                        # FZF alternative with other functions
     'ripgrep'                       # grep but with rust, blazing fast
 
 	)
