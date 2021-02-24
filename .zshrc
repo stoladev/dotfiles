@@ -6,7 +6,9 @@ export XDG_GIT_HOME="$HOME/git"
 export XDG_APYADAY_HOME="$XDG_GIT_HOME/python-projects/a-py-a-day"
 export XDG_VIMWIKI_HOME="$HOME/vimwiki"
 
-export PATH="/usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbin"
+export LOCAL_BINS=/usr/local/bin:/Users/stoladev/.local/bin:/opt/local/bin:/opt/local/sbin:/usr/local/opt/python/libexec/bin
+
+export PATH="$LOCAL_BINS:/usr/bin:/bin:/usr/sbin:/sbin"
 
 export EDITOR="nvim"
 
@@ -14,6 +16,7 @@ export EDITOR="nvim"
 # Use "chpwd() ls" to enable an automatic ls command after moving to a new directory.
 chpwd() {
 	gls -ahFGH --color=auto --group-directories-first
+	# ls -ahFGH --color=auto --group-directories-first # Ubuntu/Arch/Debian
 }
 
 # {{{ ZSH General Settings
@@ -80,6 +83,12 @@ antigen apply
 
 # {{{ Commands and Aliases
 
+# SSH connections
+alias ssh-mindhome="ssh -i ~/ssh-keys/LightsailDefaultKey-us-east-1.pem ubuntu@100.25.246.26"
+
+# Image preview in terminal
+# function lsix() { montage -label %f -background black -fill white "$@" gif:- | convert - -colors 16 sixel:-; }
+function lsix() { montage -label %f -background black -fill white "$@" gif:- | convert - -colors 32 sixel:-; }
 
 # Automatic Tmux on term launch
 (command -v tmux &> /dev/null && [ -z "$TMUX" ]) && (tmux attach -t default || tmux new -s default)
@@ -95,7 +104,8 @@ alias \
 	mv="mv -iv" \
 	rm="rm -v" \
 	mkdir="mkdir -pv" \
-	ls="gls -alohFG --color=auto --group-directories-first" # Macbook after installing coreutils
+	ls="gls -ahFGH --color=auto --group-directories-first" # Macbook after installing coreutils
+	# ls="ls -ahFGH --color=auto --group-directories-first" # Ubuntu/Arch/Debian
 
 # Dotfiles tracking directory
 alias dotfiles='/usr/bin/git --git-dir=$HOME/git/dotfiles --work-tree=$HOME'
