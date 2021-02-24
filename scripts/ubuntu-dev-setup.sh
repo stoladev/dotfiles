@@ -2,6 +2,14 @@
 
 # Default installation script for Ubuntu dev environments through CLI
 
+# Quick overview:
+# First, it updates and upgrades the system.
+# Installs default packages.
+# Installs pip packages.
+# Installs antigen (for ZSH).
+# Installs OH-MY-ZSH.
+
+
     # 'antigen'                       # Plugin manager for ZSH
 
 PKGS=(
@@ -54,9 +62,6 @@ PIPS=(
 yes | sudo apt update
 yes | sudo apt upgrade
 
-# Installs antigen and ZSH.
-[[ -f ~/.config/antigen.zsh ]] || curl -L git.io/antigen > ~/.config/antigen.zsh
-
 
 # PKG Installation
 while true; do
@@ -89,9 +94,60 @@ while true; do
 done
 echo ""
 
-# TODO
-# Neovim full setup
-# Plugin installation
-# FZF/fd installation verification
+while true; do
+    read -p "Install neovim development profile? (y/n): " yn
+    case $yn in
+        [Yy]* )
+            [[ -e ~/.config/nvim ]] || mkdir ~/.config/nvim
+            cp -r ../.config/nvim/* ~/.config/nvim/
+            break;;
+        [Nn]* )
+            break;;
+    esac
+done
+echo ""
 
-[[ -e ~/.oh-my-zsh ]] || sh -c "$(curl -fsSL https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh)"
+# Runs nvim to do initial setup.
+nvim
+
+# Installing the .zshrc
+while true; do
+    read -p "Install .ZSHRC (recommended)? (y/n): " yn
+    case $yn in
+        [Yy]* )
+            cp ../.zshrc ~/.zshrc
+            break;;
+        [Nn]* )
+            break;;
+    esac
+done
+echo ""
+
+
+# Installing tmux setup
+while true; do
+    read -p "Install .tmux config (recommended)? (y/n): " yn
+    case $yn in
+        [Yy]* )
+            cp ../.tmux.conf ../.tmux.conf.local ../.tmux ~/
+            break;;
+        [Nn]* )
+            break;;
+    esac
+done
+echo ""
+
+
+# ZSH and Antigen installation
+while true; do
+    read -p "Install OH-MY-ZSH and Antigen (lots of CLI functionality)? (y/n): " yn
+    case $yn in
+        [Yy]* )
+            OMZLINK="https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh"
+            [[ -f ~/.config/antigen.zsh ]] || curl -L git.io/antigen > ~/.config/antigen.zsh
+            [[ -e ~/.oh-my-zsh ]] || sh -c "$(curl -fsSL $OMZLINK)" "" --keep-zshrc
+            break;;
+        [Nn]* )
+            break;;
+    esac
+done
