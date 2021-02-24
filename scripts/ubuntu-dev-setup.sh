@@ -55,8 +55,8 @@ yes | sudo apt update
 yes | sudo apt upgrade
 
 # Installs antigen and ZSH.
-[[ -e ~/.oh-my-zsh ]] && sh -c "$(curl -fsSL https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh)"
-[[ -f ~/.config/antigen.zsh ]] && curl -L git.io/antigen > ~/.config/antigen.zsh
+[[ -e ~/.oh-my-zsh ]] || sh -c "$(curl -fsSL https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh)"
+[[ -f ~/.config/antigen.zsh ]] || curl -L git.io/antigen > ~/.config/antigen.zsh
 
 
 # PKG Installation
