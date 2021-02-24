@@ -129,7 +129,7 @@ while true; do
     read -p "Install .tmux config (recommended)? (y/n): " yn
     case $yn in
         [Yy]* )
-            cp ../.tmux.conf ../.tmux.conf.local ../.tmux ~/
+            cp -rf ../.tmux.conf ../.tmux.conf.local ../.tmux ~/
             break;;
         [Nn]* )
             break;;
