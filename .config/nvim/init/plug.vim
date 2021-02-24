@@ -62,7 +62,8 @@ call plug#end()
 
 
 " AUTOMATIC COC PLUGIN DL/INSTALL
-let g:coc_global_extensions=['coc-marketplace', 'coc-python', 'coc-json', 'coc-jedi', 'coc-sh', 'coc-docker']
+" Buggy on Ubuntu SSH. Install seperately.
+" let g:coc_global_extensions=['coc-marketplace', 'coc-python', 'coc-json', 'coc-jedi', 'coc-sh', 'coc-docker']
 
 
 " PLUGIN SETTINGS
