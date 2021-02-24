@@ -52,8 +52,12 @@ PIPS=(
 
 
 # Update and upgrade
-# sudo apt update
-# sudo apt upgrade
+yes | sudo apt update
+yes | sudo apt upgrade
+
+# Installs antigen and ZSH.
+[[ -e ~/.oh-my-zsh ]] && sh -c "$(curl -fsSL https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh)"
+[[ -f ~/.config/antigen.zsh ]] && curl -L git.io/antigen > ~/.config/antigen.zsh
 
 
 # PKG Installation
@@ -77,8 +81,8 @@ while true; do
     read -p "Install pip (python3) packages? (y/n): " yn
     case $yn in
         [Yy]* )
-            for PKG in "${PKGS[@]}"; do
-                sudo pip3 install --yes "$PKG"
+            for PIP in "${PIPS[@]}"; do
+                yes | pip3 install "$PIP"
             done
             break;;
         [Nn]* )
