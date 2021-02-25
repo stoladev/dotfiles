@@ -63,6 +63,10 @@ yes | sudo apt update
 yes | sudo apt upgrade
 
 
+# Checks to make sure there's a .config directory.
+[[ -e ~/.config ]] || mkdir ~/.config
+
+
 # PKG Installation
 while true; do
     read -p "Install system packages? (y/n): " yn
@@ -85,7 +89,7 @@ while true; do
     case $yn in
         [Yy]* )
             for PIP in "${PIPS[@]}"; do
-                yes | pip3 install "$PIP"
+                yes | pip3 install "$PIP" --no-warn-script-location
             done
             break;;
         [Nn]* )
@@ -98,6 +102,7 @@ while true; do
     read -p "Install neovim development profile? (y/n): " yn
     case $yn in
         [Yy]* )
+
             [[ -e ~/.config/nvim ]] || mkdir ~/.config/nvim
             cp -r ../.config/nvim/* ~/.config/nvim/
             break;;
@@ -110,7 +115,7 @@ echo ""
 # Runs nvim to do initial setup.
 nvim
 
-# Installing the .zshrc
+# Installing .zshrc
 while true; do
     read -p "Install .ZSHRC (recommended)? (y/n): " yn
     case $yn in
@@ -124,12 +129,42 @@ done
 echo ""
 
 
-# Installing tmux setup
+# Installing tmux config
 while true; do
     read -p "Install .tmux config (recommended)? (y/n): " yn
     case $yn in
         [Yy]* )
             cp -rf ../.tmux.conf ../.tmux.conf.local ../.tmux ~/
+            break;;
+        [Nn]* )
+            break;;
+    esac
+done
+echo ""
+
+
+# Installing ranger config
+while true; do
+    read -p "Install ranger config (recommended)? (y/n): " yn
+    case $yn in
+        [Yy]* )
+            [[ -e ~/.config/ranger ]] || mkdir ~/.config/ranger
+            cp -rf ../ranger/* ~/.config/ranger/
+            break;;
+        [Nn]* )
+            break;;
+    esac
+done
+echo ""
+
+
+# Installing alacritty config
+while true; do
+    read -p "Install alacritty config (recommended)? (y/n): " yn
+    case $yn in
+        [Yy]* )
+            [[ -e ~/.config/alacritty ]] || mkdir ~/.config/alacritty
+            cp -rf ../alacritty/* ~/.config/alacritty/
             break;;
         [Nn]* )
             break;;

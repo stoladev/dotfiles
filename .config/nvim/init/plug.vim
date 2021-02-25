@@ -47,7 +47,6 @@ Plug 'vim-scripts/utl.vim'
 Plug 'sheerun/vim-polyglot'
 Plug 'Raimondi/delimitMate'
 Plug 'neoclide/coc.nvim', {'branch': 'release'}
-Plug 'heavenshell/vim-pydocstring', { 'do': 'make install' }
 
 
 " APPEARANCE
