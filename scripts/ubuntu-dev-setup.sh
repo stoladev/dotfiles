@@ -102,7 +102,6 @@ while true; do
     read -p "Install neovim development profile? (y/n): " yn
     case $yn in
         [Yy]* )
-
             [[ -e ~/.config/nvim ]] || mkdir ~/.config/nvim
             cp -r ../.config/nvim/* ~/.config/nvim/
             break;;
@@ -149,7 +148,7 @@ while true; do
     case $yn in
         [Yy]* )
             [[ -e ~/.config/ranger ]] || mkdir ~/.config/ranger
-            cp -rf ../ranger/* ~/.config/ranger/
+            cp -rf ../.config/ranger/* ~/.config/ranger/
             break;;
         [Nn]* )
             break;;
@@ -164,7 +163,7 @@ while true; do
     case $yn in
         [Yy]* )
             [[ -e ~/.config/alacritty ]] || mkdir ~/.config/alacritty
-            cp -rf ../alacritty/* ~/.config/alacritty/
+            cp -rf ../.config/alacritty/* ~/.config/alacritty/
             break;;
         [Nn]* )
             break;;
