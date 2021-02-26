@@ -13,6 +13,20 @@
 
 " }}}
 
+" {{{ Checks and sets the fd binary name (different cross-system).
+
+function! FDVersionCheck()
+      if executable('fd')
+            let FINDER='fd'
+      elseif executable('fdfind')
+            let FINDER='fdfind'
+      elseif executable('fd-find')
+            let FINDER='fd-find'
+      endif
+endfunction
+
+" }}}
+
 " {{{ Creates parent directories if necessary when creating a new file
 
 function s:MkNonExDir(file, buf)

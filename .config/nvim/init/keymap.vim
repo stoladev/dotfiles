@@ -31,21 +31,13 @@ let g:vimwiki_map_prefix = '<Leader>v'
 
 " {{{ F KEY SETTINGS
 
-" SEARCHES ALL FILES AND FOLDERS, INCLUDING HIDDEN
-command! -nargs=? -complete=dir AFF
-      \ call fzf#run(fzf#wrap(fzf#vim#with_preview({
-      \   'source': 'fd --type f --hidden --follow --exclude .git --exclude yay --no-ignore . '.expand(<q-args>)
-      \ }))) " FZF term command using fd (change to fd-find or similar if not on Arch)
-nnoremap <leader>ffa :AFF $HOME<CR>
-nnoremap <leader>ffd :AFF $XDG_DOTFILES_HOME<CR>
-nnoremap <leader>ffe :AFF /etc/<CR>
-nnoremap <leader>ffu :AFF /usr/<CR>
+" {{{ FZF: Searches all visible files
 
-" SEARCHES ALL FILES AND FOLDERS, NOT INCLUDING HIDDEN
 command! -nargs=? -complete=dir FF
       \ call fzf#run(fzf#wrap(fzf#vim#with_preview({
-      \   'source': 'fd --type f --follow --exclude .git --exclude yay --no-ignore . '.expand(<q-args>)
+      \   'source': FINDER . ' --type f --follow --exclude .git --exclude yay --no-ignore . '.expand(<q-args>)
       \ })))
+
 nnoremap <leader>ffv :FF $XDG_VIMWIKI_HOME<CR>
 nnoremap <leader>ffG :FF $XDG_GIT_HOME<CR>
 nnoremap <leader>ffs :FF $XDG_SCRIPTS_HOME<CR>
@@ -54,6 +46,21 @@ nnoremap <leader>ffp :FF $XDG_PROJECTS_HOME<CR>
 nnoremap <leader>fts :setlocal spell! spelllang-en_us<CR>
 nnoremap <leader>fcw :w !sudo tee '%'<CR>
 nnoremap <Leader>fcc        :Colors<CR>
+
+" }}}
+
+" {{{ FZF: Searches all files, including hidden
+
+command! -nargs=? -complete=dir AFF
+      \ call fzf#run(fzf#wrap(fzf#vim#with_preview({
+      \   'source': FINDER . ' --type f --hidden --follow --exclude .git --exclude yay --no-ignore . '.expand(<q-args>)
+      \ }))) " FZF term command using fd (change to fd-find or similar if not on Arch)
+nnoremap <leader>ffa :AFF $HOME<CR>
+nnoremap <leader>ffd :AFF $XDG_DOTFILES_HOME<CR>
+nnoremap <leader>ffe :AFF /etc/<CR>
+nnoremap <leader>ffu :AFF /usr/<CR>
+
+" }}}
 
 let g:which_key_map.f = { 
       \ 'name' : '+file'  , 
