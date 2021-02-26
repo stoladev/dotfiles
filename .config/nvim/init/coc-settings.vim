@@ -1,11 +1,9 @@
+
 " COC INSTALLS
 " CocInstall coc-marketplace
-" CocList marketplace
-" Common dev installs: jedi, sh, docker
 
-" COC SETTINGS
+" {{{ Backspace check/remap
 
-" Backspace check/remap
 inoremap <silent><expr> <TAB>
       \ pumvisible() ? "\<C-n>" :
       \ <SID>check_back_space() ? "\<TAB>" :
@@ -17,6 +15,9 @@ function! s:check_back_space() abort
   return !col || getline('.')[col - 1]  =~# '\s'
 endfunction
 
+" }}}
+
+" {{{ General Settings
 
 inoremap <silent><expr> <c-space> coc#refresh()
 
@@ -52,7 +53,10 @@ nmap <silent> gr <Plug>(coc-references)
 "   endif
 " endfunction
 
-" TODO Causes issues upon first execution (installation). Make this activate after first install.
+" }}}
+
+" TODO 
+" Causes issues upon first execution (installation). Make this activate after first install.
 " Highlight the symbol and its references when holding the cursor.
 " autocmd CursorHold * silent call CocActionAsync('highlight')
 " augroup mygroup

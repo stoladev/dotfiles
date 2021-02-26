@@ -1,14 +1,18 @@
-" Should work cross platform uniformly.
 
-" Autoset FZF filetype for navigation
+" Should work cross-platform uniformly, given the right version of fd-find/fd/fdfind is installed.
+
+" {{{ Autoset FZF filetype for navigation
+
 augroup SetFZF
     autocmd! FileType fzf
     autocmd  FileType fzf set noshowmode noruler nonu
     autocmd! FileType * setlocal formatoptions-=c formatoptions-=r formatoptions-=o
 augroup end
 
+" }}}
 
-" FZF SETTINGS
+" {{{ General FZF Settings
+
 if has('nvim') || has('gui_running')
     let $FZF_DEFAULT_OPTS .= ' --inline-info'
 endif
@@ -28,19 +32,9 @@ let g:fzf_colors =
             \ 'header':  ['fg', 'Comment'] }
 
 
-
-
 command! PlugHelp call fzf#run(fzf#wrap({
-    \ 'source': sort(keys(g:plugs)),
-    \ 'sink':   function('s:plug_help_sink')}))
-
-
-" FZF MAPS - TODO FIND OUT WHAT THESE ARE FOR
-imap <c-x><c-k> <plug>(fzf-complete-word)
-imap <c-x><c-f> <plug>(fzf-complete-path)
-imap <c-x><c-j> <plug>(fzf-complete-file-ag)
-imap <c-x><c-l> <plug>(fzf-complete-line)
-inoremap <expr> <c-x><c-d> fzf#vim#complete#path('blsd')
+            \ 'source': sort(keys(g:plugs)),
+            \ 'sink':   function('s:plug_help_sink')}))
 
 
 " command! -nargs=* -bang RG call RipgrepFzf(<q-args>, <bang>0)
@@ -68,4 +62,12 @@ function! s:plug_help_sink(line)
     execute 'Explore' dir
 endfunction
 
+" }}}
 
+" TODO
+" FIND OUT WHAT THESE ARE FOR
+imap <c-x><c-k> <plug>(fzf-complete-word)
+imap <c-x><c-f> <plug>(fzf-complete-path)
+imap <c-x><c-j> <plug>(fzf-complete-file-ag)
+imap <c-x><c-l> <plug>(fzf-complete-line)
+inoremap <expr> <c-x><c-d> fzf#vim#complete#path('blsd')

@@ -1,9 +1,10 @@
+#!/usr/local/bin/sh
+
 export XDG_DOTFILES_HOME="$HOME/.config"
 export XDG_CONFIG_HOME="$XDG_DOTFILES_HOME"
 export XDG_CACHE_HOME="$HOME/.cache"
 export XDG_SCRIPTS_HOME="$HOME/scripts"
 export XDG_GIT_HOME="$HOME/git"
-export XDG_APYADAY_HOME="$XDG_GIT_HOME/python-projects/a-py-a-day"
 export XDG_VIMWIKI_HOME="$HOME/vimwiki"
 
 export LOCAL_BINS=/usr/local/bin:/Users/stoladev/.local/bin:/opt/local/bin:/opt/local/sbin:/usr/local/opt/python/libexec/bin
@@ -12,14 +13,14 @@ export PATH="$LOCAL_BINS:/usr/bin:/bin:/usr/sbin:/sbin"
 
 export EDITOR="nvim"
 
-# Notes: 
+
+# {{{ ZSH General Settings
+
 # Use "chpwd() ls" to enable an automatic ls command after moving to a new directory.
 chpwd() {
 	gls -ahFGH --color=auto --group-directories-first
 	# ls -ahFGH --color=auto --group-directories-first # Ubuntu/Arch/Debian
 }
-
-# {{{ ZSH General Settings
 
 ZSH_THEME="robbyrussell"
 HISTFILE=$XDG_CACHE_HOME/zsh/history
@@ -177,7 +178,7 @@ alias dotfiles='/usr/bin/git --git-dir=$HOME/git/dotfiles --work-tree=$HOME'
 # Lines configured by zsh-newuser-install
 HISTFILE=~/.histfile
 HISTSIZE=1000
-SAVEHIST=1000
+export SAVEHIST=1000
 # End of lines configured by zsh-newuser-install
 
 # The following lines were added by compinstall

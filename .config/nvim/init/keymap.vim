@@ -33,9 +33,9 @@ let g:vimwiki_map_prefix = '<Leader>v'
 
 " SEARCHES ALL FILES AND FOLDERS, INCLUDING HIDDEN
 command! -nargs=? -complete=dir AFF
-            \ call fzf#run(fzf#wrap(fzf#vim#with_preview({
-            \   'source': 'fd --type f --hidden --follow --exclude .git --exclude yay --no-ignore . '.expand(<q-args>)
-            \ }))) " FZF term command using fd (change to fd-find or similar if not on Arch)
+      \ call fzf#run(fzf#wrap(fzf#vim#with_preview({
+      \   'source': 'fd --type f --hidden --follow --exclude .git --exclude yay --no-ignore . '.expand(<q-args>)
+      \ }))) " FZF term command using fd (change to fd-find or similar if not on Arch)
 nnoremap <leader>ffa :AFF $HOME<CR>
 nnoremap <leader>ffd :AFF $XDG_DOTFILES_HOME<CR>
 nnoremap <leader>ffe :AFF /etc/<CR>
@@ -43,9 +43,9 @@ nnoremap <leader>ffu :AFF /usr/<CR>
 
 " SEARCHES ALL FILES AND FOLDERS, NOT INCLUDING HIDDEN
 command! -nargs=? -complete=dir FF
-            \ call fzf#run(fzf#wrap(fzf#vim#with_preview({
-            \   'source': 'fd --type f --follow --exclude .git --exclude yay --no-ignore . '.expand(<q-args>)
-            \ })))
+      \ call fzf#run(fzf#wrap(fzf#vim#with_preview({
+      \   'source': 'fd --type f --follow --exclude .git --exclude yay --no-ignore . '.expand(<q-args>)
+      \ })))
 nnoremap <leader>ffv :FF $XDG_VIMWIKI_HOME<CR>
 nnoremap <leader>ffG :FF $XDG_GIT_HOME<CR>
 nnoremap <leader>ffs :FF $XDG_SCRIPTS_HOME<CR>
@@ -62,28 +62,28 @@ let g:which_key_map.f = {
       \ 's' : ['Lines' , 'search the file'] ,
       \ 'r' : ['Ranger' , 'open ranger'] ,
       \ 'c' : {
-        \ 'name' : '+change'  , 
-        \ 'w' : 'write with sudo'   ,
-        \ 'c' : 'window colors'   ,
-        \ },
+      \ 'name' : '+change'  , 
+      \ 'w' : 'write with sudo'   ,
+      \ 'c' : 'window colors'   ,
+      \ },
       \ 't' : {
-        \ 'name' : '+toggle' ,
-        \ 's' : 'Toggle spelling'   ,
-        \ } ,
+      \ 'name' : '+toggle' ,
+      \ 's' : 'Toggle spelling'   ,
+      \ } ,
       \ 'f' : {
-        \ 'name' : '+fuzzyfind'  , 
-        \ 'r' : ['History'       , 'fuzzyfind recent files']   ,
-        \ 'h' : ['AFF'           , 'fuzzyfind current directory']   ,
-        \ 'g' : ['GFiles'        , 'fuzzyfind current git directory']   ,
-        \ 'G' : 'fuzzyfind all gits'   ,
-        \ 'a' : 'fuzzyfind all'   ,
-        \ 'v' : 'fuzzyfind vimwiki'   ,
-        \ 'd' : 'fuzzyfind dotfiles'   ,
-        \ 'e' : 'fuzzyfind /etc/'   ,
-        \ 'u' : 'fuzzyfind /usr/',
-        \ 's' : 'fuzzyfind scripts',
-        \ 'p' : 'fuzzyfind apyaday',
-        \ },
+      \ 'name' : '+fuzzyfind'  , 
+      \ 'r' : ['History'       , 'fuzzyfind recent files']   ,
+      \ 'h' : ['AFF'           , 'fuzzyfind current directory']   ,
+      \ 'g' : ['GFiles'        , 'fuzzyfind current git directory']   ,
+      \ 'G' : 'fuzzyfind all gits'   ,
+      \ 'a' : 'fuzzyfind all'   ,
+      \ 'v' : 'fuzzyfind vimwiki'   ,
+      \ 'd' : 'fuzzyfind dotfiles'   ,
+      \ 'e' : 'fuzzyfind /etc/'   ,
+      \ 'u' : 'fuzzyfind /usr/',
+      \ 's' : 'fuzzyfind scripts',
+      \ 'p' : 'fuzzyfind apyaday',
+      \ },
       \ }
 
 " }}}
@@ -156,64 +156,64 @@ let g:which_key_map.g = {
 " {{{ R KEY SETTINGS
 
 command! -bang -nargs=* RGCD
-        \ call fzf#vim#grep('rg --hidden --column --no-heading --line-number --color=always '.shellescape(<q-args>),               
-        \ 1,                                                                                                              
-        \ fzf#vim#with_preview(),                                                                                         
-        \ <bang>0)
+      \ call fzf#vim#grep('rg --hidden --column --no-heading --line-number --color=always '.shellescape(<q-args>),               
+      \ 1,                                                                                                              
+      \ fzf#vim#with_preview(),                                                                                         
+      \ <bang>0)
 command! -bang -nargs=* RGH
-        \ call fzf#vim#grep('rg --hidden --column --no-heading --line-number --color=always '.shellescape(<q-args>),               
-        \ 1,                                                                                                              
-        \ fzf#vim#with_preview({'dir': $HOME}),                                                                                         
-        \ <bang>0)
+      \ call fzf#vim#grep('rg --hidden --column --no-heading --line-number --color=always '.shellescape(<q-args>),               
+      \ 1,                                                                                                              
+      \ fzf#vim#with_preview({'dir': $HOME}),                                                                                         
+      \ <bang>0)
 command! -bang -nargs=* RGG
-            \ call fzf#vim#grep('rg --hidden --no-heading --column --line-number --color=always ' . shellescape(<q-args>) . ' ' .
-            \ (system('git status') =~ '^fatal' ? expand("%:p:h") : system("git rev-parse --show-toplevel")),
-            \ 1,
-            \ fzf#vim#with_preview(),
-            \ <bang>0)
+      \ call fzf#vim#grep('rg --hidden --no-heading --column --line-number --color=always ' . shellescape(<q-args>) . ' ' .
+      \ (system('git status') =~ '^fatal' ? expand("%:p:h") : system("git rev-parse --show-toplevel")),
+      \ 1,
+      \ fzf#vim#with_preview(),
+      \ <bang>0)
 command! -bang -nargs=* RGGM
-        \ call fzf#vim#grep('rg --hidden --column --no-heading --line-number --color=always '.shellescape(<q-args>),               
-        \ 1,                                                                                                              
-        \ fzf#vim#with_preview({'dir': $XDG_GIT_HOME}),                                                                                         
-        \ <bang>0)
+      \ call fzf#vim#grep('rg --hidden --column --no-heading --line-number --color=always '.shellescape(<q-args>),               
+      \ 1,                                                                                                              
+      \ fzf#vim#with_preview({'dir': $XDG_GIT_HOME}),                                                                                         
+      \ <bang>0)
 command! -bang -nargs=* RGD
-        \ call fzf#vim#grep('rg --hidden --column --no-heading --line-number --color=always '.shellescape(<q-args>),               
-        \ 1,                                                                                                              
-        \ fzf#vim#with_preview({'dir': $XDG_DOTFILES_HOME}),                                                                                         
-        \ <bang>0)
+      \ call fzf#vim#grep('rg --hidden --column --no-heading --line-number --color=always '.shellescape(<q-args>),               
+      \ 1,                                                                                                              
+      \ fzf#vim#with_preview({'dir': $XDG_DOTFILES_HOME}),                                                                                         
+      \ <bang>0)
 command! -bang -nargs=* RGV
-        \ call fzf#vim#grep('rg --hidden --column --no-heading --line-number --color=always '.shellescape(<q-args>),               
-        \ 1,                                                                                                              
-        \ fzf#vim#with_preview({'dir': $XDG_VIMWIKI_HOME}),                                                                                         
-        \ <bang>0)
+      \ call fzf#vim#grep('rg --hidden --column --no-heading --line-number --color=always '.shellescape(<q-args>),               
+      \ 1,                                                                                                              
+      \ fzf#vim#with_preview({'dir': $XDG_VIMWIKI_HOME}),                                                                                         
+      \ <bang>0)
 command! -bang -nargs=* RGP
-        \ call fzf#vim#grep('rg --hidden --column --no-heading --line-number --color=always '.shellescape(<q-args>),               
-        \ 1,                                                                                                              
-        \ fzf#vim#with_preview({'dir': '$XDG_GIT_HOME/APyADay'}),                                                                                         
-        \ <bang>0)
+      \ call fzf#vim#grep('rg --hidden --column --no-heading --line-number --color=always '.shellescape(<q-args>),               
+      \ 1,                                                                                                              
+      \ fzf#vim#with_preview({'dir': '$XDG_GIT_HOME/APyADay'}),                                                                                         
+      \ <bang>0)
 command! -bang -nargs=* RGS
-        \ call fzf#vim#grep('rg --hidden --column --no-heading --line-number --color=always '.shellescape(<q-args>),               
-        \ 1,                                                                                                              
-        \ fzf#vim#with_preview({'dir': '$XDG_GIT_HOME/APyADay'}),                                                                                         
-        \ <bang>0)
+      \ call fzf#vim#grep('rg --hidden --column --no-heading --line-number --color=always '.shellescape(<q-args>),               
+      \ 1,                                                                                                              
+      \ fzf#vim#with_preview({'dir': '$XDG_GIT_HOME/APyADay'}),                                                                                         
+      \ <bang>0)
 nnoremap <leader>rpp :!python3 '%'<CR>
 let g:which_key_map.r = {
       \ 'name' : '+run' ,
       \ 'p' : {
-        \ 'name' : '+python'  , 
-        \ 'p' : 'run python'  , 
-        \ },
+      \ 'name' : '+python'  , 
+      \ 'p' : 'run python'  , 
+      \ },
       \ 'g' : {
-        \ 'name' : '+ripgrep'  , 
-        \ 'h' : ['RGCD', 'rg here (current directory)']   ,
-        \ 'a' : ['RGH', 'rg all']   ,
-        \ 's' : ['RGP', 'rg scripts']   ,
-        \ 'p' : ['RGP', 'rg apyaday']   ,
-        \ 'g' : ['RGG', 'rg current git root']   ,
-        \ 'G' : ['RGGM', 'rg all gits']   ,
-        \ 'd' : ['RGD', 'rg dotfiles']   ,
-        \ 'v' : ['RGV', 'rg vimwiki']   ,
-        \ },
+      \ 'name' : '+ripgrep'  , 
+      \ 'h' : ['RGCD', 'rg here (current directory)']   ,
+      \ 'a' : ['RGH', 'rg all']   ,
+      \ 's' : ['RGP', 'rg scripts']   ,
+      \ 'p' : ['RGP', 'rg apyaday']   ,
+      \ 'g' : ['RGG', 'rg current git root']   ,
+      \ 'G' : ['RGGM', 'rg all gits']   ,
+      \ 'd' : ['RGD', 'rg dotfiles']   ,
+      \ 'v' : ['RGV', 'rg vimwiki']   ,
+      \ },
       \ }
 
 " }}}
@@ -264,20 +264,20 @@ nmap <leader>vs :so $XDG_CONFIG_HOME/nvim/init.vim<CR>
 let g:which_key_map.v = {
       \ 'name' : '+vim' ,
       \ 'w' : {
-        \ 'name' : '+wiki'  , 
-        \ 'd' : {
-            \ 'name' : '+diary'  , 
-            \ 'i' : 'diary index',
-            \ 't' : "today's diary",
-            \ 'w' : "today's diary in new window",
-            \ 'n' : 'next diary',
-            \ 'p' : 'previous diary',
-            \ 'g' : 'generate diary links',
-        \ },
-        \ 'i' : 'vimwiki index',
-        \ 'w' : 'vimwiki index in new window',
-        \ 's' : 'vimwiki UI select',
-        \ },
+      \ 'name' : '+wiki'  , 
+      \ 'd' : {
+      \ 'name' : '+diary'  , 
+      \ 'i' : 'diary index',
+      \ 't' : "today's diary",
+      \ 'w' : "today's diary in new window",
+      \ 'n' : 'next diary',
+      \ 'p' : 'previous diary',
+      \ 'g' : 'generate diary links',
+      \ },
+      \ 'i' : 'vimwiki index',
+      \ 'w' : 'vimwiki index in new window',
+      \ 's' : 'vimwiki UI select',
+      \ },
       \ 's' : 'source init.vim',
       \ }
 
