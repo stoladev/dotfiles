@@ -60,6 +60,8 @@ nnoremap <leader>ffd :AFF $XDG_DOTFILES_HOME<CR>
 nnoremap <leader>ffe :AFF /etc/<CR>
 nnoremap <leader>ffu :AFF /usr/<CR>
 
+" nnoremap <leader>ffh :AFF # Search current opened file's directory
+
 " }}}
 
 let g:which_key_map.f = { 
